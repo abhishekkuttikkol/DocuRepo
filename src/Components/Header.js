@@ -40,7 +40,7 @@ const Header = () => {
 
           <div class="relative p-1 flex items-center justify-end w-1/4 ml-5 mr-4  sm:right-auto">
             <button class="h-10 px-5 m-2 text-blue-100 transition-colors duration-150 bg-white-600 rounded-lg focus:shadow-outline bg-blue-600 hover:bg-blue-700">
-              Sign In
+              Upload
             </button>
           </div>
         </div>
