@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Home = () => {
+const Home = ({name, url}) => {
     return (
         <div>
       <div class=" lg:w-full mb-4 p-2 cursor-pointer">
@@ -16,9 +16,9 @@ const Home = () => {
             <div className="mt-4 flex justify-between">
               <div>
                 <h3 className="text-lg text-gray-700">
-                  <a href="">
+                  <a href={url}>
                     <span aria-hidden="true" className="absolute inset-0" />
-                    document
+                    {name}
                   </a>
                 </h3>
               </div>
