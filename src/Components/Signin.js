@@ -12,7 +12,7 @@ const Signin = () => {
     App.auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => {
-        history.push('/')
+        history.push("/");
       })
       .catch((error) => {
         alert(error.message);
@@ -35,7 +35,7 @@ const Signin = () => {
               className="cursor-pointer font-medium text-indigo-600 hover:text-indigo-500"
             >
               Sign up
-            </a>    
+            </a>
           </p>
         </div>
         <form onSubmit={handleSubmit} className="mt-8 space-y-6">

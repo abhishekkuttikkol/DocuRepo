@@ -7,10 +7,13 @@ const Home = ({ name, url, id }) => {
     imageRef
       .delete()
       .then(() => {
-        App.firestore().collection("documents").doc(id).delete().then(()=>{
-          alert("Deleted")
-        })
-  
+        App.firestore()
+          .collection("documents")
+          .doc(id)
+          .delete()
+          .then(() => {
+            alert("Deleted");
+          });
       })
       .catch((err) => console.log(err));
   };
@@ -29,7 +32,7 @@ const Home = ({ name, url, id }) => {
             <div className="mt-4 flex justify-between">
               <div>
                 <h3 className="text-lg text-gray-700">
-                  <a href={url}>
+                  <a onClick={() => window.open(url)}>
                     <span aria-hidden="true" className="absolute inset-0" />
                     {name}
                   </a>

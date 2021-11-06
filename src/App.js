@@ -25,8 +25,8 @@ function App() {
         <Route path="/create">
           <Create />
         </Route>
-        <Route path="/signup">{user ? <Signup /> : history.push("/")}</Route>
-        <Route path="/signin">{user ? <Signin /> : history.push("/")}</Route>
+        <Route path="/signup"><Signup /> </Route>
+        <Route path="/signin"> <Signin /> </Route>
       </Switch>
     </div>
   );

@@ -3,10 +3,9 @@ import { useHistory } from "react-router-dom";
 import { App } from "../Firebase";
 import { AuthContext } from "../Store/AuthContext";
 
-
 const Header = () => {
   const { user } = useContext(AuthContext);
-const history = useHistory()
+  const history = useHistory();
   return (
     <header class="w-full shadow-xl fixed top-0 left-0 bg-white dark:bg-gray-700 items-center h-16 rounded-2xl z-40">
       <div class="relative z-20 flex flex-col justify-center h-full px-3 mx-auto flex-center">
@@ -45,11 +44,13 @@ const history = useHistory()
           </div>
 
           <div class="relative p-1 flex items-center justify-end w-1/4 ml-5 mr-4  sm:right-auto">
-          {user && <span class="text-base font-normal">
-                  Welcome {user.displayName}
-          </span>}
+            {user && (
+              <span class="text-base font-normal">
+                Welcome {user.displayName}
+              </span>
+            )}
             <button
-              onClick={()=>history.push('/create')}
+              onClick={() => history.push("/create")}
               class="h-10 px-5 m-2 text-blue-100 transition-colors duration-150 bg-white-600 rounded-lg focus:shadow-outline bg-blue-600 hover:bg-blue-700"
             >
               Upload
