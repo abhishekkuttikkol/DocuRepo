@@ -1,6 +1,29 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { useHistory } from "react-router";
+import { App } from "../Firebase";
+import { AuthContext } from "../Store/AuthContext";
 
 const Create = () => {
+  const [document, setDocument] = useState('')
+  const { user } = useContext(AuthContext);
+  const history = useHistory()
+  const handleSubmit = () => {
+    App.storage()
+      .ref(`/documents/${document.name}`)
+      .put(document)
+      .then(({ ref }) => {
+        ref.getDownloadURL().then((url) => {
+          App.firestore().collection("documents").add({
+            name : document.name,
+            url : url,
+            id : user.uid
+          });
+          history.push("/");
+        });
+      });
+    console.log(document.name)
+  };
+
   return (
     <div class="py-20 h-screen bg-gray-300 px-2">
       <div class="max-w-md mx-auto bg-white rounded-lg overflow-hidden md:max-w-lg">
@@ -13,14 +36,6 @@ const Create = () => {
               </span>{" "}
             </div>
             <div class="p-3">
-              <div class="mb-2">
-                {" "}
-                <span class="text-sm">Title</span>{" "}
-                <input
-                  type="text"
-                  class="h-12 px-3 w-full border-gray-200 border rounded focus:outline-none focus:border-gray-300"
-                />{" "}
-              </div>
               <div class="mb-2">
                 {" "}
                 <span>Attachments</span>
@@ -38,20 +53,16 @@ const Create = () => {
                       </span>{" "}
                     </div>
                   </div>{" "}
-                  <input type="file" class="h-full w-full opacity-0" name="" />
+                  <input onChange={(e) => {
+                setDocument(e.target.files[0]);
+              }} type="file" class="h-full w-full opacity-0" name="" />
                 </div>
-                <div class="flex justify-between items-center text-gray-400">
-                  {" "}
-                  <span>Accepted file type:.doc only</span>{" "}
-                  <span class="flex items-center ">
-                    <i class="fa fa-lock mr-1"></i> secure
-                  </span>{" "}
-                </div>
+                
               </div>
               <div class="mt-3 text-center pb-3">
                 {" "}
-                <button class="w-full h-12 text-lg  bg-blue-600 rounded text-white hover:bg-blue-700">
-                  Create
+                <button onClick={handleSubmit} class="w-full h-12 text-lg  bg-blue-600 rounded text-white hover:bg-blue-700">
+                  Upload
                 </button>{" "}
               </div>
             </div>

@@ -1,6 +1,19 @@
 import React from "react";
+import { App } from "../Firebase";
 
-const Home = ({ name, url }) => {
+const Home = ({ name, url, id }) => {
+  const handleDelete = () => {
+    let imageRef = App.storage().refFromURL(url);
+    imageRef
+      .delete()
+      .then(() => {
+        App.firestore().collection("documents").doc(id).delete().then(()=>{
+          alert("Deleted")
+        })
+  
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <div>
       <div class=" lg:w-full mb-4 p-2 cursor-pointer">
@@ -23,6 +36,12 @@ const Home = ({ name, url }) => {
                 </h3>
               </div>
             </div>
+            <button
+              onClick={() => handleDelete()}
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+              Delete
+            </button>
           </div>
         </div>
       </div>

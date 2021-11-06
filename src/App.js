@@ -9,29 +9,24 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "./Store/AuthContext";
 
 function App() {
-  const history = useHistory()
+  const history = useHistory();
   const { setUser, user } = useContext(AuthContext);
   useEffect(() => {
     Firebase.auth().onAuthStateChanged((user) => {
-      setUser(user)
+      setUser(user);
     });
-    
   });
   return (
     <div>
       <Switch>
         <Route exact path="/">
-          {user ?<Home/> : history.push('/signin')}
+          {user ? <Home /> : history.push("/signin")}
         </Route>
         <Route path="/create">
           <Create />
         </Route>
-        <Route path="/signup">
-          <Signup />
-        </Route>
-        <Route path="/signin">
-          <Signin />
-        </Route>
+        <Route path="/signup">{user ? <Signup /> : history.push("/")}</Route>
+        <Route path="/signin">{user ? <Signin /> : history.push("/")}</Route>
       </Switch>
     </div>
   );

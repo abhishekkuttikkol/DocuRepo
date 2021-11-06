@@ -10,8 +10,7 @@ const Home = () => {
     App.firestore()
       .collection("documents")
       .where("id", "==", user.uid)
-      .get()
-      .then((response) => {
+      .onSnapshot((response) => {
         const allPosts = response.docs.map((doc) => {
           return { ...doc.data(), id: doc.id };
         });
@@ -27,7 +26,8 @@ const Home = () => {
       <div class="overflow-auto h-screen pb-24 pt-2 pr-2 pl-2 md:pt-0 md:pr-0 md:pl-0">
         <div class="flex mt-8 flex-col flex-wrap sm:flex-row ">
           {documents.map((doc) => {
-            return <Doc name={doc.name} url={doc.url} />;
+            console.log(doc);
+            return <Doc id={doc.id} name={doc.name} url={doc.url} />;
           })}
         </div>
       </div>
