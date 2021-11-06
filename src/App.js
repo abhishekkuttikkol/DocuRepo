@@ -1,19 +1,25 @@
 import "./App.css";
 import Home from "./Pages/Home";
-import { BrowserRouter, Routes , Route } from 'react-router-dom'
+import { Routes, Route, Switch } from "react-router";
 
 import Create from "./Components/Create";
-
+import Signup from "./Components/Signup";
+import Signin from "./Components/Signin";
+const user = false;
 function App() {
   return (
     <div>
-      <BrowserRouter>
-      <Routes>
-          <Route path='/' element={<Home />}></Route>
-          <Route path='create' element={<Create />}></Route>
-        </Routes> 
-      </BrowserRouter> 
-     
+      <Switch>
+        <Route exact path="/">
+          {user ? <Home /> : <Signin/>}
+        </Route>
+        <Route path="/create">
+          <Create />
+        </Route>
+        <Route path="/signup">
+          <Signup />
+        </Route>
+      </Switch>
     </div>
   );
 }

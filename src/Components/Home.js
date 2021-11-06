@@ -1,8 +1,8 @@
-import React from 'react'
+import React from "react";
 
-const Home = ({name, url}) => {
-    return (
-        <div>
+const Home = ({ name, url }) => {
+  return (
+    <div>
       <div class=" lg:w-full mb-4 p-2 cursor-pointer">
         <div class="shadow-xl rounded-2xl p-5 bg-white dark:bg-gray-700 w-full">
           <div className="group relative">
@@ -27,7 +27,7 @@ const Home = ({name, url}) => {
         </div>
       </div>
     </div>
-    )
-}
+  );
+};
 
-export default Home
+export default Home;
