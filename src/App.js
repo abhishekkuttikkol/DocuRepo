@@ -25,8 +25,13 @@ function App() {
         <Route path="/create">
           <Create />
         </Route>
-        <Route path="/signup"><Signup /> </Route>
-        <Route path="/signin"> <Signin /> </Route>
+        <Route path="/signup">
+          <Signup />{" "}
+        </Route>
+        <Route path="/signin">
+          {" "}
+          <Signin />{" "}
+        </Route>
       </Switch>
     </div>
   );
