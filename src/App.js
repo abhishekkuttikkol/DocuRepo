@@ -1,11 +1,11 @@
 import "./App.css";
 import Home from "./Pages/Home";
-import { Routes, Route, Switch, useHistory } from "react-router";
+import { Route, Switch, useHistory } from "react-router";
 import { App as Firebase } from "./Firebase";
 import Create from "./Components/Create";
 import Signup from "./Components/Signup";
 import Signin from "./Components/Signin";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "./Store/AuthContext";
 
 function App() {

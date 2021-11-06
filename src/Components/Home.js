@@ -7,13 +7,7 @@ const Home = ({ name, url, id }) => {
     imageRef
       .delete()
       .then(() => {
-        App.firestore()
-          .collection("documents")
-          .doc(id)
-          .delete()
-          .then(() => {
-            alert("Deleted");
-          });
+        App.firestore().collection("documents").doc(id).delete();
       })
       .catch((err) => console.log(err));
   };

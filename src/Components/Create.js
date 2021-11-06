@@ -37,11 +37,12 @@ const Create = () => {
         .get()
         .then((snap) => {
           const allPosts = snap;
-
-          if (allPosts.length === 0) {
+          console.log(allPosts.docs.length)
+          if (allPosts.docs.length == 0) {
+            console.log(allPosts)
             upload();
           } else {
-            console.log(allPosts.docs[0].id);
+            console.log("yes")
             App.firestore()
               .collection("documents")
               .doc(allPosts.docs[0].id)
