@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Header from "../Components/Header";
 import Doc from "../Components/Home";
 import { App } from "../Firebase";
-const id = "123";
+import { AuthContext } from "../Store/AuthContext";
+
 const Home = () => {
+  const { user } = useContext(AuthContext);
   useEffect(() => {
     App.firestore()
       .collection("documents")
-      .where("id", "==", id)
+      .where("id", "==", user.uid)
       .get()
       .then((response) => {
         const allPosts = response.docs.map((doc) => {
@@ -18,7 +20,6 @@ const Home = () => {
   }, []);
 
   const [documents, setDocuments] = useState([]);
-  console.log(documents);
 
   return (
     <div className="flex flex-col w-full pl-0 md:p-4 md:space-y-4">

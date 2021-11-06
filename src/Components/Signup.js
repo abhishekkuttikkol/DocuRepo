@@ -49,7 +49,7 @@ const Signup = () => {
           <p className="mt-2 text-center text-sm text-gray-600">
             Already a user ?{" "}
             <a
-              onClick={() => history.push("/")}
+              onClick={() => history.push("/signin")}
               className="cursor-pointer font-medium text-indigo-600 hover:text-indigo-500"
             >
               Sign in

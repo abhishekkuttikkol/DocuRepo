@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { App } from "../Firebase";
+import { AuthContext } from "../Store/AuthContext";
 
 
 const Header = () => {
+  const { user } = useContext(AuthContext);
 const history = useHistory()
   return (
     <header class="w-full shadow-xl fixed top-0 left-0 bg-white dark:bg-gray-700 items-center h-16 rounded-2xl z-40">
       <div class="relative z-20 flex flex-col justify-center h-full px-3 mx-auto flex-center">
         <div class="relative items-center pl-1 flex w-full lg:max-w-68 sm:pr-2 sm:ml-0">
           <div class="container relative left-0 z-50 flex w-3/4 h-full">
-            <div class="relative flex items-center w-full lg:w-64 h-full group">
+            {/* <div class="relative flex items-center w-full lg:w-64 h-full group">
               <div class="absolute z-50 flex items-center justify-center w-auto h-10 p-3 pr-2 text-sm text-gray-500 uppercase cursor-pointer sm:hidden">
                 <svg
                   fill="none"
@@ -38,15 +41,24 @@ const history = useHistory()
               <div class="cursor-pointer absolute right-0 hidden h-auto px-2 py-1 mr-2 text-xs text-gray-400 border border-gray-300 rounded-2xl md:block">
                 +
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div class="relative p-1 flex items-center justify-end w-1/4 ml-5 mr-4  sm:right-auto">
+          {user && <span class="text-base font-normal">
+                  Welcome {user.displayName}
+          </span>}
             <button
               onClick={()=>history.push('/create')}
               class="h-10 px-5 m-2 text-blue-100 transition-colors duration-150 bg-white-600 rounded-lg focus:shadow-outline bg-blue-600 hover:bg-blue-700"
             >
               Upload
+            </button>
+            <button
+              onClick={() => App.auth().signOut()}
+              class="h-15 px-5 m-2 text-blue-100 transition-colors duration-150 bg-white-600 rounded-lg focus:shadow-outline bg-blue-600 hover:bg-blue-700"
+            >
+              Log Out
             </button>
           </div>
         </div>
